@@ -2,9 +2,10 @@
 
 >Status do projeto: Em desenvolvimento
 
-Para rodar esse projeto na sua máquina, por favor digite:
+Este projeto tem como objetivo por em prática o conhecimento absorvido durante os estudos realizados na universidade, sendo o desenvolvimento do nosso TCC.
+A idéia do projeto é uma carteira de vacinação digital.
 
 
 ```
-node app.js
+Projeto Carteira de Vacinação Digital
 ```
