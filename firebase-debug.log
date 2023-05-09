@@ -1,0 +1,29 @@
+[debug] [2023-05-06T01:33:47.422Z] ----------------------------------------------------------------------
+[debug] [2023-05-06T01:33:47.425Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2023-05-06T01:33:47.426Z] CLI Version:   11.30.0
+[debug] [2023-05-06T01:33:47.426Z] Platform:      linux
+[debug] [2023-05-06T01:33:47.426Z] Node Version:  v18.16.0
+[debug] [2023-05-06T01:33:47.427Z] Time:          Fri May 05 2023 22:33:47 GMT-0300 (Brasilia Standard Time)
+[debug] [2023-05-06T01:33:47.427Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-05-06T01:33:47.526Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-05-06T01:33:47.526Z] > authorizing via signed-in user (eduardorbezerra@gmail.com)
+[debug] [2023-05-06T01:33:47.527Z] [iam] checking project carteira-vac-digital for permissions ["firebase.projects.get","firebasedatabase.instances.update"]
+[debug] [2023-05-06T01:33:47.530Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/carteira-vac-digital:testIamPermissions [none]
+[debug] [2023-05-06T01:33:47.530Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/carteira-vac-digital:testIamPermissions x-goog-quota-user=projects/carteira-vac-digital
+[debug] [2023-05-06T01:33:47.530Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carteira-vac-digital:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-05-06T01:33:48.719Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/carteira-vac-digital:testIamPermissions 200
+[debug] [2023-05-06T01:33:48.719Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/carteira-vac-digital:testIamPermissions {"permissions":["firebase.projects.get","firebasedatabase.instances.update"]}
+[debug] [2023-05-06T01:33:48.722Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/carteira-vac-digital [none]
+[debug] [2023-05-06T01:33:49.220Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/carteira-vac-digital 200
+[debug] [2023-05-06T01:33:49.221Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/carteira-vac-digital {"projectId":"carteira-vac-digital","projectNumber":"358262989024","displayName":"Carteira Vac Digital","name":"projects/carteira-vac-digital","resources":{"hostingSite":"carteira-vac-digital","realtimeDatabaseInstance":"carteira-vac-digital-default-rtdb"},"state":"ACTIVE","etag":"1_c462416b-a673-459c-a06d-448b22b65eee"}
+[info] 
+[info] === Deploying to 'carteira-vac-digital'...
+[info] 
+[info] i  deploying database 
+[debug] [2023-05-06T01:33:54.241Z] Error: Timed out.
+    at Timeout._onTimeout (/usr/lib/node_modules/firebase-tools/lib/utils.js:253:49)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+[error] 
+[error] Error: An unexpected error has occurred.
