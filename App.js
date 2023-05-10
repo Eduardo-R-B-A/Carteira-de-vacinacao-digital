@@ -28,6 +28,11 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
     navigation.navigate('UserRegistration');
   };
 
+  const handleProfessionalRegister = () => {
+    navigation.navigate('HealthProfessionalRegistration');
+  };
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}> Carteira de Vacinação Digital </Text>
@@ -59,7 +64,7 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
         <Text style={styles.buttonText}> Cadastrar Usuário</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: registerHealthButtonColor }]} onPress={handleRegister}>
+      <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: registerHealthButtonColor }]} onPress={handleProfessionalRegister}>
         <Text style={styles.buttonText}> Cadastrar Profissional da Saúde</Text>
       </TouchableOpacity>
 
