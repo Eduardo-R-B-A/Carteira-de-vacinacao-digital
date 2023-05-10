@@ -8,9 +8,16 @@ import UserRegistrationScreen from './screens/UserRegistrationScreen';
 import HealthProfessionalRegistrationScreen from './screens/HealthProfessionalRegistrationScreen';
 import { useNavigation } from '@react-navigation/native';
 
+
+
+
+
+
 const loginButtonColor = 'blue';
 const registerButtonColor = 'green';
 const forgotPasswordButtonColor = 'orange';
+const registerHealthButtonColor = 'red';
+
 
 const Stack = createStackNavigator();
 
@@ -48,11 +55,15 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={[styles.button, { width: '40%', backgroundColor: registerButtonColor }]} onPress={handleRegister}>
+      <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: registerButtonColor }]} onPress={handleRegister}>
         <Text style={styles.buttonText}> Cadastrar Usuário</Text>
       </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, { backgroundColor: forgotPasswordButtonColor }]} onPress={() => console.log('Recuperar senha')}>
+      <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: registerHealthButtonColor }]} onPress={handleRegister}>
+        <Text style={styles.buttonText}> Cadastrar Profissional da Saúde</Text>
+      </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: forgotPasswordButtonColor }]} onPress={() => console.log('Recuperar senha')}>
           <Text style={styles.buttonText}> Recuperar senha </Text>
         </TouchableOpacity>
       </View>
@@ -69,6 +80,7 @@ export default function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  
 
   const handleLogin = (username, password) => {
     if (username === 'admin' && password === 'password') {

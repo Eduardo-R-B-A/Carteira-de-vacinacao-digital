@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 
-export default function HealthProfessionalRegistrationScreen() {
+
+
+export default function HealthProfessionalRegistrationScreen({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [profession, setProfession] = useState('Selecione uma opção');
+  const [location, setLocation] = useState('Selecione uma opção');
 
   const handleRegister = () => {
+    console.log('Botão pressionado');
     if (password !== confirmPassword) {
       alert('As senhas não coincidem. Por favor, verifique novamente.');
     } else {
-      // complete the else statement here
+      // Código de registro do profissional de saúde aqui
     }
   };
 
@@ -43,9 +49,39 @@ export default function HealthProfessionalRegistrationScreen() {
         onChangeText={text => setConfirmPassword(text)}
         value={confirmPassword}
       />
+      <View style={styles.dropdownContainer}>
+  <Text style={styles.dropdownLabel}>Profissão:</Text>
+  <ModalDropdown
+    options={['Selecione uma opção', 'Enfermeiro(a)', 'Tec. Enfermagem', 'Médico']}
+    defaultValue={profession}
+    style={styles.dropdown}
+    textStyle={styles.dropdownText}
+    dropdownStyle={styles.dropdownOptions}
+    onSelect={(index, value) => setProfession(value)}
+  />
+</View>
+
+<View style={styles.dropdownContainer}>
+  <Text style={styles.dropdownLabel}>Localidade:</Text>
+  <ModalDropdown
+    options={['Selecione uma opção', 'Hospital', 'UPA', 'Clínica Médica']}
+    defaultValue={location}
+    style={styles.dropdown}
+    textStyle={styles.dropdownText}
+    dropdownStyle={styles.dropdownOptions}
+    onSelect={(index, value) => setLocation(value)}
+  />
+</View>
+
+
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar Profissional</Text>
       </TouchableOpacity>
+
+      <Button
+        title="Ir para tela de registro de profissional de saúde"
+        onPress={() => navigation.navigate('HealthProfessionalRegistration')}
+      />
     </View>
   );
 }
@@ -77,5 +113,35 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  dropdownContainer: {
+    width: '80%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 8,
+  },
+  dropdownLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdown: {
+    width: '60%',
+    height: 50,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+  },
+  dropdownText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdownOptions: {
+    width: '60%',
+    height: 150,
+    borderRadius: 8,
+    borderColor: '#ccc',
+    borderWidth: 1,
   },
 });
