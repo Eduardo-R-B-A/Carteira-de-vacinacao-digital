@@ -7,9 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import UserRegistrationScreen from './screens/UserRegistrationScreen';
 import HealthProfessionalRegistrationScreen from './screens/HealthProfessionalRegistrationScreen';
 import { useNavigation } from '@react-navigation/native';
-
-
-
+import PasswordRecoveryScreen from './PasswordRecoveryScreen';
 
 
 
@@ -31,6 +29,11 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
   const handleProfessionalRegister = () => {
     navigation.navigate('HealthProfessionalRegistration');
   };
+
+  const handlePasswordRecovery = () => {
+    navigation.navigate('PasswordRecovery');
+  };
+  
   
 
   return (
@@ -68,7 +71,7 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
         <Text style={styles.buttonText}> Cadastrar Profissional da Saúde</Text>
       </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: forgotPasswordButtonColor }]} onPress={() => console.log('Recuperar senha')}>
+        <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: forgotPasswordButtonColor }]} onPress={handlePasswordRecovery}>
           <Text style={styles.buttonText}> Recuperar senha </Text>
         </TouchableOpacity>
       </View>
@@ -104,8 +107,10 @@ export default function App() {
 
       <Stack.Screen name="UserRegistration" component={UserRegistrationScreen} />
       <Stack.Screen name="HealthProfessionalRegistration" component={HealthProfessionalRegistrationScreen} />
+      <Stack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
     </Stack.Navigator>
   </NavigationContainer>
+
 );
 }
 
