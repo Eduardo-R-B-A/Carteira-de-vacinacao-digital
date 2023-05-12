@@ -78,10 +78,12 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
         <Text style={styles.buttonText}>Cadastrar Profissional</Text>
       </TouchableOpacity>
 
+      <View style={styles.buttonContainer}>
       <Button
         title="Ir para tela de registro de profissional de saúde"
         onPress={() => navigation.navigate('HealthProfessionalRegistration')}
       />
+      </View>
     </View>
   );
 }
@@ -109,6 +111,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 16,
   },
+  buttonContainer: {
+    width: '80%',
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  
   buttonText: {
     color: '#fff',
     fontSize: 18,

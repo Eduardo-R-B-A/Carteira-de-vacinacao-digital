@@ -10,7 +10,6 @@ import { useNavigation } from '@react-navigation/native';
 import PasswordRecoveryScreen from './PasswordRecoveryScreen';
 
 
-
 const loginButtonColor = 'blue';
 const registerButtonColor = 'green';
 const forgotPasswordButtonColor = 'orange';

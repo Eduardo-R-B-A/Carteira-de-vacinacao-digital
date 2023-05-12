@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import firebase from '../firebase';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { database } from '../firebase';
+
+const auth = getAuth();
 
 export default function RegistrationScreen() {
   const [name, setName] = useState('');
@@ -12,10 +15,10 @@ export default function RegistrationScreen() {
     if (password !== confirmPassword) {
       alert('As senhas não coincidem. Por favor, verifique novamente.');
     } else {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          firebase.database().ref('users/' + user.uid).set({
+          database.ref('users/' + user.uid).set({
             name: name,
             email: email
           })
@@ -79,10 +82,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
+    width: '80%',
+    height: 50,
+    backgroundColor: '#1e90ff',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 16,
   },
   buttonText: {
     color: '#fff',
