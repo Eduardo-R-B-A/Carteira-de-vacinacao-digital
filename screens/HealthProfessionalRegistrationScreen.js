@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { database } from '../firebase';
 
+
+
+const auth = getAuth();
 
 
 export default function HealthProfessionalRegistrationScreen({ navigation }) {
@@ -18,6 +23,26 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
       alert('As senhas não coincidem. Por favor, verifique novamente.');
     } else {
       // Código de registro do profissional de saúde aqui
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // User created successfully
+        const user = userCredential.user;
+        // Add custom user data to the Firebase Realtime Database
+        database.ref(`healthProfessionals/${user.uid}`).set({
+          name: name,
+          profession: profession,
+          location: location
+        });
+        console.log('User created successfully:', user);
+        // Navigate to the next screen
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        // Handle errors here
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('Error creating user:', errorCode, errorMessage);
+      });
     }
   };
 
