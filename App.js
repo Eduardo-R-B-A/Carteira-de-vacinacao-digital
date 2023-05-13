@@ -4,10 +4,14 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import UserRegistrationScreen from './screens/UserRegistrationScreen';
 import HealthProfessionalRegistrationScreen from './screens/HealthProfessionalRegistrationScreen';
 import { useNavigation } from '@react-navigation/native';
-import PasswordRecoveryScreen from './PasswordRecoveryScreen';
+import PasswordRecoveryScreen from './screens/PasswordRecoveryScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import { getDatabase, ref } from 'firebase/database';
+
 
 
 const loginButtonColor = 'blue';
@@ -18,8 +22,11 @@ const registerHealthButtonColor = 'red';
 
 const Stack = createStackNavigator();
 
-function HomeScreen({ username, password, setUsername, setPassword, handleLogin, loggedIn }) {
+function HomeScreen({ handleLogin, loggedIn }) {
   const navigation = useNavigation();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  
 
   const handleRegister = () => {
     navigation.navigate('UserRegistration');
@@ -32,8 +39,28 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
   const handlePasswordRecovery = () => {
     navigation.navigate('PasswordRecovery');
   };
-  
-  
+
+  const handleLoginPress = () => {
+    const auth = getAuth();
+    
+    signInWithEmailAndPassword(auth, username, password)
+      .then((userCredential) => {
+        // Login bem-sucedido
+        const user = userCredential.user;
+        
+        // Navegar para a tela ProfileScreen
+        navigation.navigate('ProfileScreen');
+      })
+      .catch((error) => {
+        // Tratar erros de login
+        console.log('Erro ao fazer login:', error);
+      });
+  };
+
+  const handleProfileScreen = () => {
+    navigation.navigate('ProfileScreen');
+  };
+
 
   return (
     <View style={styles.container}>
@@ -56,9 +83,8 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
 
       <TouchableOpacity
         style={[styles.button, { width: '80%', backgroundColor: loginButtonColor }]}
-        onPress={() => handleLogin(username, password)}
-      >
-        <Text style={styles.buttonText}> Login </Text>
+        onPress={handleLoginPress}> 
+      <Text style={styles.buttonText}> Login </Text>
       </TouchableOpacity>
 
       <View style={styles.buttonContainer}>
@@ -73,27 +99,32 @@ function HomeScreen({ username, password, setUsername, setPassword, handleLogin,
         <TouchableOpacity style={[styles.button, { width: '35%', backgroundColor: forgotPasswordButtonColor }]} onPress={handlePasswordRecovery}>
           <Text style={styles.buttonText}> Recuperar senha </Text>
         </TouchableOpacity>
-      </View>
 
-      {loggedIn && (
-        <Text style={styles.loggedInText}>Você está logado.</Text>
-      )}
+      </View>
+      
     </View>
   );
 }
 
 export default function App() {
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   
 
-  const handleLogin = (username, password) => {
-    if (username === 'admin' && password === 'password') {
+  const handleLogin = async (username, password) => {
+    const database = getDatabase();
+    const usersRef = ref(database, 'users');
+    const userRef = child(usersRef, username);
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(auth, username, password);
       setLoggedIn(true);
-    } else {
-      setError('Nome de usuário ou senha incorretos.');
+      setUser(userCredential.user);
+    } catch (error) {
+      console.log(error);
+      setLoggedIn(false);
     }
   };
 
@@ -101,12 +132,20 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator>
     <Stack.Screen name="Home" options={{ headerShown: false }}>
-        {({ navigation }) => <HomeScreen username={username} setUsername={setUsername} setPassword={setPassword} handleLogin={handleLogin} navigation={navigation} />}
-      </Stack.Screen>
+          {() => (
+            <HomeScreen
+              setUsername={setUsername}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              loggedIn={loggedIn}
+            />
+          )}
+        </Stack.Screen>
 
       <Stack.Screen name="UserRegistration" component={UserRegistrationScreen} />
       <Stack.Screen name="HealthProfessionalRegistration" component={HealthProfessionalRegistrationScreen} />
       <Stack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 

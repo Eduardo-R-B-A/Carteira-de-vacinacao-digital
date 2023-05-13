@@ -8,8 +8,11 @@ const HomeScreen = ({ username, navigation }) => {
       <Button title="Cadastrar usuário" onPress={() => navigation.navigate('UserRegistration')} />
       <Button title="Cadastrar profissional da saúde" onPress={() => navigation.navigate('HealthProfessionalRegistration')} />
       <Button title="Recuperar senha" onPress={() => navigation.navigate('PasswordRecovery')} />
+      <Button title="Perfil" onPress={() => navigation.navigate('handleLoginPress')} />
     </View>
   );
 };
+
+
 
 export default HomeScreen;

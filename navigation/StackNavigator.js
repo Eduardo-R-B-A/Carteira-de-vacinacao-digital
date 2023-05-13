@@ -3,7 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import UserRegistrationScreen from '../screens/UserRegistrationScreen';
 import HealthProfessionalRegistrationScreen from '../screens/HealthProfessionalRegistrationScreen';
-import PasswordRecoveryScreen from './PasswordRecoveryScreen';
+import PasswordRecoveryScreen from '../screens/PasswordRecoveryScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -29,7 +31,13 @@ export default function StackNavigator() {
         name="PasswordRecovery" 
         component={PasswordRecoveryScreen}
         options={{ title: 'Recuperar Senha'}} 
-        />
+      />
+      <Stack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{ title: 'Profile' }}
+      />
+
     </Stack.Navigator>
   );
 }

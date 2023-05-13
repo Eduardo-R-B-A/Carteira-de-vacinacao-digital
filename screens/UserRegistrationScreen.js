@@ -10,6 +10,7 @@ export default function RegistrationScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [cpf, setCpf] = useState('');
 
   const handleRegister = () => {
     if (password !== confirmPassword) {
@@ -20,7 +21,8 @@ export default function RegistrationScreen() {
           const user = userCredential.user;
           database.ref('users/' + user.uid).set({
             name: name,
-            email: email
+            email: email,
+            cpf: cpf
           })
           alert('Usuário cadastrado com sucesso!');
         })
@@ -59,6 +61,13 @@ export default function RegistrationScreen() {
         secureTextEntry
         onChangeText={text => setConfirmPassword(text)}
         value={confirmPassword}
+      />
+       <TextInput
+        style={styles.input}
+        placeholder="CPF"
+        keyboardType="numeric"
+        onChangeText={text => setCpf(text)}
+        value={cpf}
       />
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar</Text>
