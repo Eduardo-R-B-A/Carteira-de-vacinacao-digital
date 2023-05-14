@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import PasswordRecoveryScreen from './screens/PasswordRecoveryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { getDatabase, ref } from 'firebase/database';
+import HealthProfessionalScreen from './screens/HealthProfessionalScreen';
 
 
 
@@ -146,6 +147,7 @@ export default function App() {
       <Stack.Screen name="HealthProfessionalRegistration" component={HealthProfessionalRegistrationScreen} />
       <Stack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="HealthProfessionalScreen" component={HealthProfessionalScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 

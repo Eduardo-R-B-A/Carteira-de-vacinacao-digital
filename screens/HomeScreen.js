@@ -9,6 +9,7 @@ const HomeScreen = ({ username, navigation }) => {
       <Button title="Cadastrar profissional da saúde" onPress={() => navigation.navigate('HealthProfessionalRegistration')} />
       <Button title="Recuperar senha" onPress={() => navigation.navigate('PasswordRecovery')} />
       <Button title="Perfil" onPress={() => navigation.navigate('handleLoginPress')} />
+      <Button title="Área de profissional da saúde" onPress={() => navigation.navigate('HealthProfessional')} />
     </View>
   );
 };

@@ -3,13 +3,24 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button } from 'rea
 import ModalDropdown from 'react-native-modal-dropdown';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { database } from '../firebase';
+import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
 const auth = getAuth();
 
 
+const Stack = createStackNavigator();
+
 export default function HealthProfessionalRegistrationScreen({ navigation }) {
+  //const navigation = useNavigation();
+
+  const handleGoToHealthProfessionalScreen = () => {
+    navigation.navigate('HealthProfessionalScreen');
+  };
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -44,6 +55,7 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
         console.log('Error creating user:', errorCode, errorMessage);
       });
     }
+    
   };
 
   return (
@@ -102,13 +114,15 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar Profissional</Text>
       </TouchableOpacity>
-
+      
+      
       <View style={styles.buttonContainer}>
       <Button
-        title="Ir para tela de registro de profissional de saúde"
-        onPress={() => navigation.navigate('HealthProfessionalRegistration')}
+        title="Ir para área de profissional de saúde"
+        onPress={handleGoToHealthProfessionalScreen}
       />
-      </View>
+    </View> 
+      
     </View>
   );
 }
@@ -137,9 +151,16 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   buttonContainer: {
-    width: '80%',
+    /*width: '80%',
     marginTop: 16,
-    marginBottom: 16,
+    marginBottom: 16,*/
+    width: '80%',
+    height: 50,
+    backgroundColor: '#1e90ff',
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 16,
   },
   
   buttonText: {
@@ -178,3 +199,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
+
+
+    /*<View style={styles.buttonContainer}>
+      <Button
+        title="Ir para tela de registro de profissional de saúde"
+        onPress={() => navigation.navigate('HealthProfessionalRegistration')}
+      />
+    </View> */

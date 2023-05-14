@@ -5,6 +5,8 @@ import UserRegistrationScreen from '../screens/UserRegistrationScreen';
 import HealthProfessionalRegistrationScreen from '../screens/HealthProfessionalRegistrationScreen';
 import PasswordRecoveryScreen from '../screens/PasswordRecoveryScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import HealthProfessionalScreen from '../screens/HealthProfessionalScreen';
+
 
 
 const Stack = createStackNavigator();
@@ -36,6 +38,11 @@ export default function StackNavigator() {
         name="ProfileScreen"
         component={ProfileScreen}
         options={{ title: 'Profile' }}
+      />
+      <Stack.Screen
+        name="HealthProfessional"
+        component={HealthProfessionalScreen}
+        options={{ title: 'Área de Profissional de Saúde' }}
       />
 
     </Stack.Navigator>
