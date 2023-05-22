@@ -116,12 +116,7 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
       </TouchableOpacity>
       
       
-      <View style={styles.buttonContainer}>
-      <Button
-        title="Ir para área de profissional de saúde"
-        onPress={handleGoToHealthProfessionalScreen}
-      />
-    </View> 
+     
       
     </View>
   );
@@ -207,3 +202,11 @@ const styles = StyleSheet.create({
         onPress={() => navigation.navigate('HealthProfessionalRegistration')}
       />
     </View> */
+
+    
+    /*  <View style={styles.buttonContainer}>
+      <Button
+        title="Ir para área de profissional de saúde"
+        onPress={handleGoToHealthProfessionalScreen}
+      />
+    </View>  */

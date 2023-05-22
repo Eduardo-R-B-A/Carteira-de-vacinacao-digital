@@ -9,16 +9,22 @@ const auth = getAuth();
 
 const VaccineItem = ({ name, manufacturer, dosage }) => {
   return (
-    <View style={styles.vaccineContainer}>
+<View style={styles.vaccineContainer}>
       <Text style={styles.vaccineName}>{name}</Text>
       <Text style={styles.vaccineManufacturer}>{manufacturer}</Text>
       <View style={styles.dosageContainer}>
         {dosage.map((dose, index) => (
-          <Text key={index} style={styles.dosageText}>
-            {dose.type}: {dose.amount}
-          </Text>
+          <View key={index} style={styles.dosageItem}>
+            <Text style={styles.dosageText}>
+              {dose.type}: {dose.amount}
+            </Text>
+            {index === dosage.length - 1 ? (
+              <View style={styles.separator} />
+            ) : null}
+          </View>
         ))}
       </View>
+      <View style={styles.sectionSeparator} />
     </View>
   );
 };
@@ -158,7 +164,49 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     marginVertical: 10,
   },
+  dosageContainer: {
+    marginTop: 10,
+  },
+  dosageItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  dosageText: {
+    fontSize: 16,
+  },
+  separator: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+    marginVertical: 5,
+  },
+  sectionSeparator: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+    marginVertical: 10,
+  },
 });
 
 
 
+
+
+
+
+/*<View style={styles.vaccineContainer}>
+      <Text style={styles.vaccineName}>{name}</Text>
+      <Text style={styles.vaccineManufacturer}>{manufacturer}</Text>
+      <View style={styles.dosageContainer}>
+        {dosage.map((dose, index) => (
+          <View key={index} style={styles.dosageItem}>
+          <Text key={index} style={styles.dosageText}>
+            {dose.type}: {dose.amount}
+          </Text>
+          {index < dosage.length - 1 && <View style={styles.separator} />}
+          </View>
+        ))}
+      </View>
+    </View>
+  );
+};*/

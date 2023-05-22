@@ -49,8 +49,16 @@ function HomeScreen({ handleLogin, loggedIn }) {
         // Login bem-sucedido
         const user = userCredential.user;
         
-        // Navegar para a tela ProfileScreen
+        
+        // Verificar o tipo de usuário com base em uma propriedade específica
+        if (user == 'ProfileScreen'){
         navigation.navigate('ProfileScreen');
+        }else {
+        navigation.navigate('HealthProfessionalScreen');
+      }
+        // Navegar para a tela ProfileScreen
+        //navigation.navigate('ProfileScreen');
+        //navigation.navigate('HealthProfessionalScreen');
       })
       .catch((error) => {
         // Tratar erros de login
@@ -58,9 +66,9 @@ function HomeScreen({ handleLogin, loggedIn }) {
       });
   };
 
-  const handleProfileScreen = () => {
-    navigation.navigate('ProfileScreen');
-  };
+  //const handleProfileScreen = () => {
+    //navigation.navigate('ProfileScreen');
+  //};
 
 
   return (
