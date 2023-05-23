@@ -4,6 +4,7 @@ import { getAuth } from 'firebase/auth';
 import { database } from '../firebase';
 import { getDatabase, ref, child, get } from 'firebase/database';
 import ModalDropdown from 'react-native-modal-dropdown';
+import Toast from 'react-native-toast-message';
 
 
 
@@ -20,6 +21,8 @@ const auth = getAuth();
     const [loggedIn, setLoggedIn] = useState(false);
     const [cpf, setCpf] = useState('');
     const [userInfo, setUserInfo] = useState(null);
+    const [selectedVaccine, setSelectedVaccine] = useState(null);
+    const vaccineOptions = ['Vacina A', 'Vacina B', 'Vacina C', 'Vacina D', 'Vacina E'];
 
   
     useEffect(() => {
@@ -41,6 +44,18 @@ const auth = getAuth();
 
       fetchData();
   }, []);
+
+  const handleInsertVaccine = () => {
+    // Realizar a lógica de inserção da vacina no banco de dados
+    console.log('Vacina inserida:', selectedVaccine);
+    Toast.show({
+      type: 'success',
+      text1: 'Vacina inserida com sucesso!',
+      position: 'bottom',
+      visibilityTime: 2000,
+      autoHide: true,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -79,6 +94,21 @@ const auth = getAuth();
       }}
     />
 
+<ModalDropdown
+        style={styles.dropdown}
+        dropdownStyle={styles.dropdownContainer}
+        dropdownTextStyle={styles.dropdownText}
+        options={vaccineOptions}
+        onSelect={(index) => setSelectedVaccine(vaccineOptions[index])}
+      />
+
+{selectedVaccine && (
+        <View style={styles.vaccineInfo}>
+          <Text>Vacina Selecionada: {selectedVaccine}</Text>
+          <Button title="Inserir Vacina" onPress={handleInsertVaccine} />
+        </View>
+      )}
+
     {userInfo && (
       <View style={styles.userInfo}>
         <Text>Nome: {userInfo.nome}</Text>
@@ -86,6 +116,7 @@ const auth = getAuth();
         <Text>E-mail: {userInfo.email}</Text>
       </View>
     )}
+    <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
 
     
@@ -99,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingTop: 20,
     padding: 16,
   },
   label: {
@@ -111,6 +142,44 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 16,
   },
+  input: {
+    width: '100%',
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    marginBottom: 16,
+    fontSize: 16,
+  },
+
+  dropdown: {
+    width: '100%',
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    marginBottom: 16,
+    fontSize: 16,
+  },
+  dropdownContainer: {
+    width: '100%',
+    borderRadius: 8,
+    marginTop: 8,
+  },
+  dropdownText: {
+    fontSize: 16,
+    padding: 8,
+  },
+  vaccineInfo: {
+    marginTop: 16,
+    alignItems: 'center',
+  },
+  userInfo: {
+    marginTop: 16,
+  },
+  
 });
 
 export default HealthProfessionalScreen;
