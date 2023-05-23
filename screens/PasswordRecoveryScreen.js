@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 
 export default function PasswordRecoveryScreen() {
@@ -7,6 +8,29 @@ export default function PasswordRecoveryScreen() {
   
     const handleRecovery = () => {
       // Lógica para enviar o e-mail de recuperação de senha
+
+      // Exemplo: Verificar se o e-mail foi preenchido
+    if (!email) {
+      Toast.show({
+        type: 'error',
+        text1: 'Erro',
+        text2: 'Digite seu e-mail',
+        visibilityTime: 3000,
+      });
+      return;
+    }
+
+    // Exemplo: Enviar o e-mail de recuperação de senha
+    const sendRecoveryEmail = () =>{
+      
+    };
+
+    // Exibir a mensagem de sucesso
+    Toast.show({
+      type: 'success',
+      text1: 'Link enviado com sucesso!',
+      visibilityTime: 3000,
+    });
     };
   
     return (
@@ -21,6 +45,7 @@ export default function PasswordRecoveryScreen() {
         <TouchableOpacity style={styles.button} onPress={handleRecovery}>
           <Text style={styles.buttonText}>Recuperar Senha</Text>
         </TouchableOpacity>
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </View>
     );
   }
