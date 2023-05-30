@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 
 
+
 const auth = getAuth();
 
 
@@ -46,6 +47,7 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
         });
         console.log('User created successfully:', user);
         // Navigate to the next screen
+
         navigation.navigate('Home');
       })
       .catch((error) => {
@@ -114,10 +116,7 @@ export default function HealthProfessionalRegistrationScreen({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar Profissional</Text>
       </TouchableOpacity>
-      
-      
-     
-      
+       
     </View>
   );
 }

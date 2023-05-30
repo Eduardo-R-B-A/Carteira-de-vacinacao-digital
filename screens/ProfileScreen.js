@@ -194,6 +194,11 @@ const styles = StyleSheet.create({
 
 
 
+
+
+
+
+
 /*<View style={styles.vaccineContainer}>
       <Text style={styles.vaccineName}>{name}</Text>
       <Text style={styles.vaccineManufacturer}>{manufacturer}</Text>

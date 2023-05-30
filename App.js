@@ -51,10 +51,10 @@ function HomeScreen({ handleLogin, loggedIn }) {
         
         
         // Verificar o tipo de usuário com base em uma propriedade específica
-        if (user == 'ProfileScreen'){
-        navigation.navigate('ProfileScreen');
-        }else {
+        if (user !== 'ProfileScreen'){
         navigation.navigate('HealthProfessionalScreen');
+        }else {
+        navigation.navigate('ProfileScreen');
       }
         // Navegar para a tela ProfileScreen
         //navigation.navigate('ProfileScreen');
