@@ -9,14 +9,14 @@ import { getAuth } from "firebase/auth";
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
-  apiKey: "AIzaSyAIWfXSuYz7U1piw5ycPDXZ2GZCNzRlVGc",
+  apiKey: "AfuRtG667usjIuHrDtGtFrDolO9&6p4m54",
   authDomain: "carteira-vac-digital.firebaseapp.com",
-  databaseURL: "https://carteira-vac-digital-default-rtdb.firebaseio.com",
+  databaseURL: "https://carteira-vac-digital-default-gcpt.firebaseio.com",
   projectId: "carteira-vac-digital",
   storageBucket: "carteira-vac-digital.appspot.com",
-  messagingSenderId: "358262989024",
-  appId: "1:358262989024:web:5d94258817daf85a10b085",
-  measurementId: "G-QM51D73E0D"
+  messagingSenderId: "098987656434",
+  appId: "1:8887369993:web:96ur64ndf94nfd94ii",
+  measurementId: "G-Wn67Dt5E5e"
 };
 
 // Initialize Firebase
